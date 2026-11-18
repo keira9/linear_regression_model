@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# written by the API while it runs
+summative/API/model_archive/
+summative/API/data/retrain_history.json
+
+# Flutter build output
+summative/FlutterApp/**/.dart_tool/
+summative/FlutterApp/**/build/
+summative/FlutterApp/**/.flutter-plugins*
+summative/FlutterApp/**/.idea/
+*.iml
