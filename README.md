@@ -104,7 +104,6 @@ On Render: Web Service, root directory `summative/API`, build `pip install -r re
 ```
 linear_regression_model/
 ├── README.md
-├── render.yaml
 └── summative/
     ├── pyproject.toml
     ├── uv.lock
@@ -125,5 +124,3 @@ linear_regression_model/
         └── seen_loan_app/
 ```
 
-## AI use acknowledgement
-I acknowledge the use of AI tools (Claude, by Anthropic) to EDIT THIS: describe exactly how you used it, for example "explain concepts, suggest code structure, review my code and help write documentation" in this assessment. The output was reviewed, modified, and critically evaluated before submission. The prompts and outputs are listed in the AI use annex submitted with this work.
