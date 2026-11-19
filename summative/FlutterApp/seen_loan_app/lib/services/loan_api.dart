@@ -69,9 +69,11 @@ class LoanApi {
           )
           .timeout(const Duration(seconds: 90));
     } on TimeoutException {
-      throw const LoanApiError('The server took too long to answer. It may be waking up, try again in a moment.');
+      throw const LoanApiError(
+          'The server took too long to answer. It may be waking up, try again in a moment.');
     } on http.ClientException {
-      throw const LoanApiError('No connection to the server. Check the internet connection and try again.');
+      throw const LoanApiError(
+          'No connection to the server. Check the internet connection and try again.');
     }
 
     Object? decoded;
@@ -83,14 +85,18 @@ class LoanApi {
     if (response.statusCode == 200 && decoded is Map<String, dynamic>) {
       return LoanEstimate.fromJson(decoded);
     }
-    if (response.statusCode == 422 && decoded is Map && decoded['detail'] is List) {
+    if (response.statusCode == 422 &&
+        decoded is Map &&
+        decoded['detail'] is List) {
       final problems = (decoded['detail'] as List).map((item) {
-        final field = ((item['loc'] as List).last).toString().replaceAll('_', ' ');
+        final field =
+            ((item['loc'] as List).last).toString().replaceAll('_', ' ');
         final text = item['msg'].toString().replaceFirst('Value error, ', '');
         return '$field: $text';
       });
       throw LoanApiError(problems.join('\n'));
     }
-    throw LoanApiError('The server returned an error (code ${response.statusCode}).');
+    throw LoanApiError(
+        'The server returned an error (code ${response.statusCode}).');
   }
 }

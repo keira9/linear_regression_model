@@ -20,7 +20,8 @@ class SeenApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6A1B9A)),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
-          border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
         ),
       ),
       home: EstimateScreen(api: api),

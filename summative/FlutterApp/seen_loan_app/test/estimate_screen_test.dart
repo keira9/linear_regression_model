@@ -23,7 +23,8 @@ Future<void> tapPredict(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('the page has six labelled fields and a Predict button', (tester) async {
+  testWidgets('the page has six labelled fields and a Predict button',
+      (tester) async {
     await tester.pumpWidget(SeenApp(api: LoanApi()));
     expect(find.byType(TextFormField), findsNWidgets(6));
     expect(find.text('Predict'), findsOneWidget);
@@ -31,7 +32,9 @@ void main() {
     expect(find.text('Loan term (months)'), findsOneWidget);
   });
 
-  testWidgets('missing, wrong and out-of-range values are explained in the result panel', (tester) async {
+  testWidgets(
+      'missing, wrong and out-of-range values are explained in the result panel',
+      (tester) async {
     await tester.pumpWidget(SeenApp(api: LoanApi()));
     await tester.enterText(find.byKey(const Key('term')), 'ten');
     await tester.enterText(find.byKey(const Key('women')), '80');
@@ -51,16 +54,21 @@ void main() {
     await fillAll(tester);
     await tapPredict(tester);
     expect(find.text('\$1,665'), findsOneWidget);
-    expect(find.text('Similar loans usually fall between \$1,259 and \$2,190.'), findsOneWidget);
+    expect(find.text('Similar loans usually fall between \$1,259 and \$2,190.'),
+        findsOneWidget);
   });
 
-  testWidgets('a validation error from the API is shown as plain text', (tester) async {
+  testWidgets('a validation error from the API is shown as plain text',
+      (tester) async {
     final client = MockClient((request) async => http.Response(
         '{"detail": [{"loc": ["body", "country"], "msg": "Value error, \'Kenia\' is not a country the model knows. Closest matches: Kenya."}]}',
         422));
     await tester.pumpWidget(SeenApp(api: LoanApi(client: client)));
     await fillAll(tester);
     await tapPredict(tester);
-    expect(find.text("country: 'Kenia' is not a country the model knows. Closest matches: Kenya."), findsOneWidget);
+    expect(
+        find.text(
+            "country: 'Kenia' is not a country the model knows. Closest matches: Kenya."),
+        findsOneWidget);
   });
 }
