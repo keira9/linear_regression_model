@@ -15,6 +15,20 @@ Each row is a real loan request posted on kiva.org between January 2014 and July
 **Swagger UI: https://seen-loan-api.onrender.com/docs**
 
 The API runs on Render's free plan, which sleeps after 15 minutes without visits. The first request after that can take up to a minute.
+### How to test the API in Swagger
+
+Open the Swagger link above, wait up to a minute if the server is waking up, then try each case:
+
+1. **Valid prediction.** `POST /predict` > Try it out, paste the body below, Execute. Expect `200` with the estimated amount.
+   ```json
+   {"country": "Kenya", "activity": "Retail", "repayment_interval": "monthly",
+    "term_in_months": 12, "borrower_count": 1, "repeat_borrower": false}
+   ```
+2. **Wrong data type.** Change `"term_in_months"` to `"twelve"`. Expect `422` (validation error), no prediction.
+3. **Out-of-range value.** Change `"borrower_count"` to `80` (the limit is 50). Expect `422`.
+4. **Missing value.** Delete the `country` line. Expect `422`.
+5. **Retraining.** `POST /retrain` > Try it out, choose the file `summative/API/sample_new_loans.csv`, Execute. The upload starts retraining and the response says whether the new model was accepted.
+6. **Check the model.** `GET /model` shows the model version and the test scores, so you can see whether retraining changed it.
 
 ## Video demo
 **YouTube: https://youtu.be/PUT_YOUR_VIDEO_ID_HERE**
