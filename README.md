@@ -31,7 +31,7 @@ Open the Swagger link above, wait up to a minute if the server is waking up, the
 6. **Check the model.** `GET /model` shows the model version and the test scores, so you can see whether retraining changed it.
 
 ## Video demo
-**YouTube: https://youtu.be/PUT_YOUR_VIDEO_ID_HERE**
+**[YouTube: https://youtu.be/PUT_YOUR_VIDEO_ID_HERE](https://youtu.be/CYPXZEb7Djw)**
 
 ## Running the mobile app
 1. Install Flutter (https://docs.flutter.dev/get-started/install) and run `flutter doctor` to check the setup.
